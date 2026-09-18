@@ -383,7 +383,7 @@ function App() {
           <div className="edu-item">
             <div className="edu-header">
               <span className="edu-title">Подработка в мэрии Кара-Балта</span>
-              <span className="edu-year">2024</span>
+              <span className="edu-year">2025</span>
             </div>
             <p className="edu-desc">Настройка и поддержание работоспособности парка компьютеров. Оперативное решение инцидентов сотрудников (принтеры, локальная сеть, зависания Windows). Подготовка интерактивных презентаций для руководства города.</p>
           </div>

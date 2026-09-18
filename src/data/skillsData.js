@@ -136,7 +136,7 @@ export const SKILLS = [
     desc:'Полноценное 3D моделирование, скульптинг и базовая анимация. Работаю с полигонами, топологией, UV-развёрткой и сборкой сцен.',
     level:3, evidence:'Примеры работ: Donut (классический туториал), TV/TV2 (моделирование техники), chair (мебель), house (архитектура), man (персонаж), spaceship (космический корабль), самолет (авиация), Reference (изучение референсов).',
     tools:'Blender', icon:Box,
-    images: ['/portfolio/tv.png', '/portfolio/house.png', '/portfolio/spaceship.png', '/portfolio/reference_turnaround.jpg', '/portfolio/study.jpg'],
+    images: ['/portfolio/tv.png', '/portfolio/house.png', '/portfolio/spaceship.png'],
     subskills: { 'моделирование': 63, 'скульптинг': 43, 'анимация': 20, 'текстурирование': 10 } },
   { id:'video', domain:'05 · 3D, GameDev и Мультимедиа',
     tags:['видео','творчество','монтаж'], title:'Видеомонтаж',

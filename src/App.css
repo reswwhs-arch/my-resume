@@ -66,6 +66,7 @@ header.hero{
   width: 168px;
   height: 168px;
   flex: none;
+  order: 0;
 }
 
 .photo-frame::before{
@@ -119,6 +120,11 @@ header.hero{
   color: var(--accent);
   font-size: 14px;
   margin: 0 0 18px;
+}
+
+.hero-text{
+  order: 1;
+  flex: 1;
 }
 
 .hero-text p.bio{

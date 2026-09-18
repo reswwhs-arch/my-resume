@@ -139,6 +139,22 @@ function App() {
           <div className="hero-text">
             <h1>Сыймык Шарабидинов</h1>
             <p className="role">Junior IT-специалист · Техподдержка · Помощник по ПК</p>
+            <div style={{ 
+              padding: '12px 16px', 
+              border: '1px solid var(--accent-soft)', 
+              background: 'rgba(0, 240, 255, 0.05)', 
+              borderRadius: '4px', 
+              marginBottom: '16px',
+              fontSize: '13px',
+              lineHeight: '1.5'
+            }}>
+              <p style={{ margin: '0 0 8px 0', color: 'var(--paper)' }}>
+                Здесь вы можете увидеть мои навыки и выполненные проекты в разных направлениях — от техподдержки и железа до локальных AI-систем и веб-разработки.
+              </p>
+              <p style={{ margin: '0', fontSize: '11px', color: 'var(--paper-dimmer)', fontStyle: 'italic' }}>
+                * Портфолио постоянно обновляется — не всё пока доделано до конца.
+              </p>
+            </div>
             <p className="bio node2">
               IT-специалист с сильной инженерной базой в железе, сетях и современных AI-пайплайнах.
               Имею практический опыт локального развёртывания open-source LLM (Qwen, Gemma) на потребительском железе

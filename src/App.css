@@ -1021,3 +1021,15 @@ footer{
     text-decoration: underline !important;
   }
 }
+
+/* ---------- DIPLOM MODAL ---------- */
+.diplom-backdrop {
+  z-index: 400;
+}
+
+.diplom-modal {
+  max-width: 95vw !important;
+  max-height: 95vh !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}

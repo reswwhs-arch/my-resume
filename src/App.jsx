@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { 
-  Search, User, MapPin, Send, Mail, Phone, X, Bot
+  Search, User, MapPin, Send, Mail, Phone, X, Bot, FileText, Download
 } from 'lucide-react'
 import './App.css'
 import AIChat from './AIChat'
@@ -17,6 +17,7 @@ function App() {
   const [aiChatVisible, setAiChatVisible] = useState(false)
   const [imageGallery, setImageGallery] = useState(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [diplomModalVisible, setDiplomModalVisible] = useState(false)
 
   const domainOrder = [...new Set(SKILLS.map(s => s.domain))]
   
@@ -311,6 +312,64 @@ function App() {
               Специальность: «Программное обеспечение вычислительной техники и автоматизированных систем».<br />
               Изученные направления: архитектура ЭВМ, операционные системы, компьютерные сети и телекоммуникации, базы данных, технические средства информатизации.
             </p>
+            <div style={{ marginTop: '12px', display: 'flex', gap: '10px' }}>
+              <button 
+                onClick={() => setDiplomModalVisible(true)}
+                style={{ 
+                  padding: '8px 16px', 
+                  background: 'var(--accent-soft)', 
+                  border: '1px solid var(--accent)', 
+                  color: 'var(--paper)', 
+                  fontSize: '12px', 
+                  borderRadius: '3px', 
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  transition: 'all 0.2s'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = 'var(--accent)'
+                  e.target.style.color = 'var(--bg)'
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'var(--accent-soft)'
+                  e.target.style.color = 'var(--paper)'
+                }}
+              >
+                <FileText size={14} />
+                Посмотреть диплом
+              </button>
+              <a 
+                href="/diplomUC 266210958.pdf" 
+                download
+                style={{ 
+                  padding: '8px 16px', 
+                  background: 'transparent', 
+                  border: '1px solid var(--line)', 
+                  color: 'var(--paper-dim)', 
+                  fontSize: '12px', 
+                  borderRadius: '3px', 
+                  cursor: 'pointer',
+                  textDecoration: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  transition: 'all 0.2s'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.borderColor = 'var(--accent)'
+                  e.target.style.color = 'var(--paper)'
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.borderColor = 'var(--line)'
+                  e.target.style.color = 'var(--paper-dim)'
+                }}
+              >
+                <Download size={14} />
+                Скачать PDF
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -496,6 +555,23 @@ function App() {
             </div>
             <div className="gallery-counter">
               {currentImageIndex + 1} / {imageGallery.length}
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className={`modal-backdrop diplom-backdrop ${diplomModalVisible ? 'open' : ''}`} onClick={() => setDiplomModalVisible(false)}>
+        {diplomModalVisible && (
+          <div className="modal-card diplom-modal" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '95vw', maxHeight: '95vh', padding: '0', overflow: 'hidden' }}>
+            <button className="modal-close" onClick={() => setDiplomModalVisible(false)} aria-label="Закрыть" style={{ zIndex: 10, background: 'var(--panel)', position: 'sticky', top: '10px', right: '10px' }}>
+              <X size={14} />
+            </button>
+            <div style={{ width: '100%', height: '90vh' }}>
+              <iframe 
+                src="/diplomUC 266210958.pdf" 
+                style={{ width: '100%', height: '100%', border: 'none' }}
+                title="Диплом"
+              />
             </div>
           </div>
         )}

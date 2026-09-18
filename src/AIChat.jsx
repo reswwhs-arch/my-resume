@@ -236,7 +236,7 @@ export default function AIChat() {
   const selectedModelConfig = models.find(m => m.id === selectedModel)
 
   return (
-    <div style={{ padding: '40px 0', borderTop: '1px solid var(--line)', overflowX: 'hidden', overflowY: 'auto', height: '100%' }}>
+    <div style={{ padding: '40px 0', borderTop: '1px solid var(--line)' }}>
       <div className="wrap">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
           <h2 style={{ fontSize: '22px', fontWeight: '600', margin: 0 }}>

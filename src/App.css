@@ -26,6 +26,7 @@ html{ scroll-behavior: smooth; }
 
 body{
   margin:0;
+  overflow-x: hidden;
   background-color: #081521;
   background-image:
     radial-gradient(600px circle at var(--x, -1000px) var(--y, -1000px), rgba(0, 240, 255, 0.06), transparent 80%),
@@ -659,6 +660,18 @@ footer{
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 8px;
+}
+
+@media (max-width: 640px){
+  footer{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  footer > div{
+    width: 100%;
+  }
 }
 
 /* ---------- MODAL ---------- */

@@ -26,7 +26,7 @@ npm run preview
 
 ## 🌐 Где опубликован сайт
 
-Сайт опубликован на Cloudflare Pages: [Ссылка будет добавлена после деплоя]
+Сайт опубликован на Cloudflare Pages: https://my-resume.rut840001.workers.dev
 
 ## 🔄 Как обновить сайт
 

@@ -932,6 +932,18 @@ footer{
   max-height: 90vh !important;
 }
 
+/* ---------- PROJECTS MODAL ---------- */
+.projects-modal {
+  padding: 24px;
+}
+
+.projects-modal h2 {
+  margin: 0 0 20px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
 .gallery-container {
   display: flex;
   align-items: center;

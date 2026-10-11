@@ -5,6 +5,7 @@ import {
 import './App.css'
 import AIChat from './AIChat'
 import { SKILLS, LEVEL_LABELS } from './data/skillsData'
+import { PROJECTS } from './data/projectsData'
 
 function App() {
   const [query, setQuery] = useState('')
@@ -18,6 +19,8 @@ function App() {
   const [imageGallery, setImageGallery] = useState(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [diplomModalVisible, setDiplomModalVisible] = useState(false)
+  const [projectsModalVisible, setProjectsModalVisible] = useState(false)
+  const [currentProjects, setCurrentProjects] = useState([])
 
   const domainOrder = [...new Set(SKILLS.map(s => s.domain))]
   
@@ -119,11 +122,15 @@ function App() {
   }
 
   const handleDetailsClick = () => {
-    if (modalSkill.images && modalSkill.images.length > 0) {
+    if (modalSkill.hasProjects && modalSkill.projectCategory) {
+      const projects = PROJECTS[modalSkill.projectCategory] || []
+      setCurrentProjects(projects)
+      setProjectsModalVisible(true)
+    } else if (modalSkill.images && modalSkill.images.length > 0) {
       setImageGallery(modalSkill.images)
       setCurrentImageIndex(0)
     } else {
-      alert('Для этого навыка скриншоты пока не добавлены.\n\nСкоро здесь будут отображаться:\n- Скриншоты работ\n- Примеры проектов\n- Демонстрации навыков')
+      alert('Для этого навыка проекты пока не добавлены.\n\nСкоро здесь будут отображаться:\n- Скриншоты работ\n- Примеры проектов\n- Демонстрации навыков')
     }
   }
 
@@ -523,7 +530,7 @@ function App() {
               }
             </div>
             <button className="details-button enabled" onClick={handleDetailsClick}>
-              Подробнее с изображениями
+              {modalSkill.hasProjects ? 'Подробнее о проектах' : 'Подробнее с изображениями'}
             </button>
           </div>
         )}
@@ -583,11 +590,90 @@ function App() {
               <X size={14} />
             </button>
             <div style={{ width: '100%', height: '90vh' }}>
-              <iframe 
-                src="/diplomUC 266210958.pdf" 
+              <iframe
+                src="/diplomUC 266210958.pdf"
                 style={{ width: '100%', height: '100%', border: 'none' }}
                 title="Диплом"
               />
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className={`modal-backdrop projects-backdrop ${projectsModalVisible ? 'open' : ''}`} onClick={() => setProjectsModalVisible(false)}>
+        {projectsModalVisible && (
+          <div className="modal-card projects-modal" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '900px', maxHeight: '90vh', overflow: 'auto' }}>
+            <button className="modal-close" onClick={() => setProjectsModalVisible(false)} aria-label="Закрыть">
+              <X size={14} />
+            </button>
+            <h2 style={{ fontSize: '20px', fontWeight: '600', margin: '0 0 20px', color: 'var(--accent)' }}>
+              Проекты: {modalSkill?.title}
+            </h2>
+            <div style={{ display: 'grid', gap: '24px' }}>
+              {currentProjects.length > 0 ? currentProjects.map(project => (
+                <div key={project.id} style={{
+                  background: 'var(--bg-2)',
+                  border: '1px solid var(--line)',
+                  borderRadius: '8px',
+                  padding: '20px',
+                  display: 'grid',
+                  gap: '16px'
+                }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '16px' }}>
+                    <h3 style={{ fontSize: '18px', fontWeight: '600', margin: '0' }}>{project.title}</h3>
+                  </div>
+                  <p style={{ fontSize: '14px', color: 'var(--paper-dim)', margin: '0', lineHeight: '1.6' }}>
+                    {project.description}
+                  </p>
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+                    gap: '12px',
+                    fontSize: '13px'
+                  }}>
+                    <div>
+                      <span style={{ color: 'var(--paper-dimmer)', fontSize: '12px', display: 'block', marginBottom: '4px' }}>Тип проекта</span>
+                      <span style={{ color: 'var(--accent)' }}>{project.projectType}</span>
+                    </div>
+                    <div>
+                      <span style={{ color: 'var(--paper-dimmer)', fontSize: '12px', display: 'block', marginBottom: '4px' }}>Время</span>
+                      <span>{project.timeSpent}</span>
+                    </div>
+                    <div>
+                      <span style={{ color: 'var(--paper-dimmer)', fontSize: '12px', display: 'block', marginBottom: '4px' }}>Завершённость</span>
+                      <span style={{ color: project.completion >= 80 ? 'var(--ok)' : project.completion >= 50 ? 'var(--accent)' : 'var(--paper-dim)' }}>
+                        {project.completion}%
+                      </span>
+                    </div>
+                  </div>
+                  <div style={{
+                    background: 'var(--panel)',
+                    border: '1px solid var(--line)',
+                    borderRadius: '6px',
+                    overflow: 'hidden',
+                    marginTop: '8px',
+                    maxHeight: '500px'
+                  }}>
+                    {project.type === 'video' ? (
+                      <video
+                        src={project.media}
+                        controls
+                        style={{ width: '100%', height: '100%', maxHeight: '500px', display: 'block' }}
+                      />
+                    ) : (
+                      <img
+                        src={project.media}
+                        alt={project.title}
+                        style={{ width: '100%', height: 'auto', maxHeight: '500px', objectFit: 'contain', display: 'block' }}
+                      />
+                    )}
+                  </div>
+                </div>
+              )) : (
+                <p style={{ color: 'var(--paper-dim)', fontStyle: 'italic' }}>
+                  Проекты пока не добавлены
+                </p>
+              )}
             </div>
           </div>
         )}
